@@ -29,6 +29,7 @@ async fn main() {
     // `axum::Server` is a re-export of `hyper::Server`
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     tracing::debug!("listening on {}", addr);
+    println!("http://localhost:3000");
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
         .await
@@ -39,6 +40,9 @@ async fn main() {
 async fn root() -> impl IntoResponse {
     Html(include_str!("./index.html"))
 }
+
+const MAX_WIDTH:i32 = 100;
+const MAX_HEIGHT:i32 = 28;
 
 async fn connect(Json(payload): Json<ConnectRequest>) -> impl IntoResponse {
     let id = Uuid::new_v4();
@@ -53,7 +57,12 @@ async fn connect(Json(payload): Json<ConnectRequest>) -> impl IntoResponse {
             CyberdeckEvent::DataChannelStateChange(c) => {
                 if c.state() == RTCDataChannelState::Open {
                     println!("DataChannel '{}' opened", c.name());
-                    c.send_text("Connected to client!").await.unwrap();
+                    c.send_text(r###"..............
+..............
+..............
+.......#......
+..............
+.............."###).await.unwrap();
                 } else if c.state() == RTCDataChannelState::Closed {
                     println!("DataChannel '{}' closed", c.name());
                 }

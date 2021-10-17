@@ -22,15 +22,29 @@
     });
 
     let sendChannel = pc.createDataChannel("gorgon");
+    sendChannel.onopen = (ev) => {
+      document.addEventListener("keypress", (e) => {
+        let k = e.key;
+        if (e.ctrlKey) {
+          k = "ctrl+" + k;
+        } else if (e.altKey) {
+          k = "alt+" + k;
+        } else if (e.metaKey) {
+          k = "meta+" + k;
+        }
+        sendChannel.send(k);
+      });
+    };
     sendChannel.onmessage = (e) => {
       ctx.fillStyle = "black";
       ctx.fillRect(0, 0, 800, 600);
       ctx.fillStyle = "white";
-      ctx.fillText(
-        `Message from DataChannel '${sendChannel.label}' payload '${e.data}'`,
-        10,
-        50
-      );
+      ctx.font = "12px monospace";
+      var lines = e.data.split("\n");
+      const lineheight = 20;
+      for (var i = 0; i < lines.length; i++) {
+        ctx.fillText(lines[i], 10, 15 + i * lineheight);
+      }
     };
 
     pc.onicecandidate = (event) => {
