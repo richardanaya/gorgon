@@ -2,8 +2,9 @@
 name = "gorgon"
 version = "0.0.0"
 edition = "2018"
-description = "A multiplayer web-based roguelike"
+description = "A multiplayer web-based roguelike in Rust"
 homepage = "https://github.com/richardanaya/gorgon"
+license = "MIT or Apache-2.0"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
