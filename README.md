@@ -1,6 +1,6 @@
 # Gorgon
 
-A multiplayer web-based roguelike.
+A multiplayer web-based roguelike build on Rust and WebRTC.
 
 <img width="890" alt="Screen Shot 2021-10-17 at 2 16 40 PM" src="https://user-images.githubusercontent.com/294042/137645321-0361e674-f708-4443-bad6-99e2661af052.png">
 
