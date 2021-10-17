@@ -1,0 +1,16 @@
+[package]
+name = "gorgon"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+lazy_static = "1"
+cyberdeck = "0.0.12"
+axum = "0.2"
+serde = "1"
+tokio = "1"
+tracing-subscriber = "0.2"
+tracing = "0.1"
+uuid = { version = "0.8", features = ["serde", "v4"]  }
